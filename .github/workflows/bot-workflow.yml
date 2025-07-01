@@ -1,12 +1,12 @@
 name: Run Twitter Bot
 
 on:
-  push:  
-    branches:
-      - master  
-  schedule:
-    - cron: '0 */32 * * *'  # Runs every 32 hours, if something fails check files size (max 5MB)
-  workflow_dispatch:  
+  # push:  # Runs the bot every time a commit is made
+  #   branches:
+  #     - master  # Only on the master branch
+  # schedule:
+  #   - cron: '0 */32 * * *'  # Runs every 32 hours, if something fails check files size (max 5MB)
+  workflow_dispatch:  # Allows manual execution of the workflow
 
 jobs:
   run-bot:
