@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 """
-Chirp - Automated Twitter Photo Bot
+Chirp -- A Python bot for effortless Twitter content automation. 
+
+MIT License
 
 Copyright (c) 2025 Alessandro Chitarrini
 
