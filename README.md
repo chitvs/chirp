@@ -62,7 +62,9 @@ chirp/
 
 ### Repository Setup
 
-Clone this repository
+You can create your own copy of this project by clicking the **“Use this template”** button at the top of the GitHub repository page. This will generate a new repository with the same structure and files, ready for your customization.
+
+Alternatively, you can clone the repository directly:
 
 ```bash
 git clone https://github.com/chitvs/chirp.git
