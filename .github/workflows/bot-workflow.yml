@@ -1,0 +1,58 @@
+name: Run Twitter Bot
+
+on:
+  push:  
+    branches:
+      - master  
+  schedule:
+    - cron: '0 */32 * * *'  # Runs every 32 hours, if something fails check files size (max 5MB)
+  workflow_dispatch:  
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4  
+        with:
+          python-version: '3.12.3'  
+          
+      - name: Cache Python packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Install the required dependencies for your bot
+          
+      - name: Run the bot
+        run: |
+          python bot.py  # Run your bot script
+        env:
+          API_KEY: ${{ secrets.API_KEY }}  # Use the stored GitHub secret for API_KEY
+          API_SECRET: ${{ secrets.API_SECRET }}  # Use the stored GitHub secret for API_SECRET
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # Use the stored GitHub secret for ACCESS_TOKEN
+          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}  # Use the stored GitHub secret for ACCESS_TOKEN_SECRET
+          
+      - name: Commit and push changes
+        run: |
+          # Check if there are any changes in the repository
+          if [[ $(git status --porcelain) ]]; then
+            git config --local user.name "github-actions[bot]"
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git add .  # Stage all changes in the repository
+            git commit -m "Update repository after bot run"
+            git push origin master  # Push changes to the master branch
+          else
+            echo "No changes to commit"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
