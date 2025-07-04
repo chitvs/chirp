@@ -12,7 +12,7 @@ A Python-based Twitter/X automation bot that posts photos from your repository a
 * Robust error handling with retry logic
 * Simple environment variable configuration
 
-## Project Structure
+## Project structure
 
 ```
 chirp/
@@ -30,7 +30,7 @@ chirp/
 └── README.md                    
 ```
 
-## Quick Start
+## Quick start
 
 ### Get X API Access
 
@@ -60,7 +60,7 @@ chirp/
    * Select "Read and Write" (required for posting)
    * Save changes
 
-### Repository Setup
+### Repository setup
 
 You can create your own copy of this project by clicking the **“Use this template”** button at the top of the GitHub repository page. This will generate a new repository with the same structure and files, ready for your customization.
 
@@ -71,7 +71,7 @@ git clone https://github.com/chitvs/chirp.git
 cd chirp
 ```
 
-### Configure GitHub Secrets
+### Configure GitHub secrets
 
 > [!CAUTION]
 > Your X API keys must be added as GitHub repository secrets.
@@ -100,7 +100,7 @@ ACCESS_TOKEN_SECRET=your_access_token_secret_here
 > [!WARNING]
 > Never commit these keys to your repository or share them publicly.
 
-### Add Your Photos
+### Add your photos
 
 Upload photos to the `photos/` directory. The bot posts photos in alphabetical order, so consider using numbered prefixes for consistent ordering:
 
@@ -125,7 +125,7 @@ Photo Requirements:
 
 ## Configuration
 
-### Changing Post Schedule
+### Changing post schedule
 
 Edit the cron expression in `.github/workflows/bot-workflow.yml`:
 
@@ -137,13 +137,13 @@ schedule:
 > [!TIP]
 > Use [Crontab Guru](https://crontab.guru/) to validate custom expressions.
 
-### Customizing Bot Behavior
+### Customizing bot behavior
 
 * Retry attempts: adjust `max_attempts=3` in `post_random_photo()`
 * Tweet text: modify the `text=""` parameter in `client.create_tweet()`
 * Photo selection logic: currently selects the first photo alphabetically, update logic in `post_random_photo()` if needed
 
-## How It Works
+## How it works
 
 1. Scans the `photos/` directory for the first alphabetically sorted photo
 2. Attempts to upload the photo to Twitter/X
@@ -155,7 +155,7 @@ schedule:
    * Logs the error
    * Tries the next photo (up to 3 attempts per run)
 
-## Automation Schedule
+## Automation schedule
 
 | Trigger Type | When It Runs    | Description                              |
 | ------------ | --------------- | ---------------------------------------- |
@@ -163,7 +163,7 @@ schedule:
 | Push         | On code commits | Runs when you push to the main branch    |
 | Manual       | On demand       | Trigger manually from GitHub Actions tab |
 
-## File Management
+## File management
 
 ```
 photos/                   # Your source photos
@@ -179,15 +179,15 @@ photos_rejected/          # Failed to post
 └── too_large.png
 ```
 
-## Monitoring and Logs
+## Monitoring and logs
 
-### Viewing Execution Logs
+### Viewing execution logs
 
 1. Go to your GitHub repository
 2. Click the "Actions" tab
 3. Click on a workflow run to view logs
 
-### Local Activity Log
+### Local activity log
 
 `post_log.txt` will include entries like:
 
