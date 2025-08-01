@@ -111,7 +111,7 @@ photos/
 ├── 03_cat.jpg
 ```
 
-Photo Requirements:
+Photo requirements:
 
 * Maximum size: 5MB per photo
 * Place files directly in the `photos` folder, not in subfolders
