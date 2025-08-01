@@ -198,22 +198,13 @@ photos_rejected/          # Failed to post
 2025-07-03 02:15:45: No photos found in directory
 ```
 
-## Contributing
-
-1. Fork the repository
-2. Create a branch: `git checkout -b feature/my-feature`
-3. Make and test your changes
-4. Commit: `git commit -m 'Add feature'`
-5. Push: `git push origin feature/my-feature`
-6. Open a Pull Request
-
 ## Acknowledgments
 
 Chirp uses:
 
-* Tweepy: Python library for Twitter API integration
-* GitHub Actions: For seamless automation
-* X Developer Platform: Providing API access
+* Tweepy
+* GitHub Actions
+* X Developer Platform
 
 ## License
 
